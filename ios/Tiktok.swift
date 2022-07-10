@@ -6,17 +6,19 @@ import Photos
 class Tiktok: UIViewController {
     
   @objc
-  func auth(_ callback: @escaping RCTResponseSenderBlock) {
-    let scopes = ["user.info.basic,video.list"] // list your scopes
+    func auth(_ state:String ,scopes:String , callback: @escaping RCTResponseSenderBlock) {
+    let scopes = [scopes] // list your scopes
     let scopesSet = NSOrderedSet(array:scopes)
     let request = TikTokOpenSDKAuthRequest()
     request.permissions = scopesSet
+    request.state = state;
 
     DispatchQueue.main.async {
-      request.send(self, completion: { resp -> Void in
-        callback([
-          ["status": resp.errCode.rawValue, "code": resp.code]
-        ])
+        request.send(self, completion: { resp -> Void in
+            let grantedPermissions = (resp.grantedPermissions?.array as? [String])?.joined(separator:",") ?? "";
+            callback([
+                ["status": resp.errCode.rawValue, "code": resp.code,"state": resp.state,"grantedPermissions": grantedPermissions ]
+            ])
       })
     }
   }

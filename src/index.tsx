@@ -6,25 +6,27 @@ const { Tiktok } = NativeModules;
 type ResponseType = {
   status: number;
   code: string;
+  grantedPermissions: string;
+  state: string;
 };
 
 export const auth = (
-  state:string,scope:string,callback: (code: string, error: boolean | null, errMsg: string) => void
+  state:string,scope:string,callback: (response: ResponseType, error: boolean | null, errMsg: string) => void
 ) => {
   Tiktok.auth(state,scope,(resp: ResponseType) => {
     if (Platform.OS === 'ios') {
       switch (resp.status) {
         case response.success:
-          callback(resp.code, false, '');
+          callback(resp, false, '');
           break;
         case response.networkError:
-          callback('', true, 'Network Error');
+          callback(resp, true, 'Network Error');
           break;
         case response.authDenied:
-          callback('', true, 'Auth Denied');
+          callback(resp, true, 'Auth Denied');
           break;
         case response.unsupported:
-          callback('', true, 'Unsupported');
+          callback(resp, true, 'Unsupported');
           break;
         default:
           null;
