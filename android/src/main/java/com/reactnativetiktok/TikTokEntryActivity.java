@@ -39,6 +39,8 @@ public class TikTokEntryActivity extends ReactActivity implements IApiEventHandl
             WritableMap params = Arguments.createMap();
             params.putInt("status", response.errorCode);
             params.putString("code", response.authCode);
+            params.putString("grantedPermissions",response.grantedPermissions);
+            params.putString("state",response.state);
             ReactContext ctx = getReactNativeHost().getReactInstanceManager().getCurrentReactContext();
             ctx.getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class).emit("onAuthCompleted", params);
             finish();
