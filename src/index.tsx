@@ -11,9 +11,15 @@ type ResponseType = {
 };
 
 export const auth = (
-  state:string,scope:string,callback: (response: ResponseType, error: boolean | null, errMsg: string) => void
+  state: string,
+  scope: string,
+  callback: (
+    response: ResponseType,
+    error: boolean | null,
+    errMsg: string
+  ) => void
 ) => {
-  Tiktok.auth(state,scope,(resp: ResponseType) => {
+  Tiktok.auth(state, scope, (resp: ResponseType) => {
     if (Platform.OS === 'ios') {
       switch (resp.status) {
         case response.success:
@@ -32,7 +38,7 @@ export const auth = (
           null;
       }
     } else {
-      callback('', null, '');
+      callback('' as any, null, '');
     }
   });
 };
