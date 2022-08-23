@@ -1,6 +1,6 @@
 {
   "name": "@humanz/react-native-tiktok",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Get authorized and fetch user profile, share videos",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
@@ -36,13 +36,13 @@
     "ios",
     "android"
   ],
-  "repository": "https://github.com/Lg0gs/react-native-tiktok",
-  "author": "Lg0gs <lgogsadze93@gmail.com> (https://github.com/Lg0gs)",
+  "repository": "https://github.com/humanzltd/react-native-tiktok",
+  "author": "Humanz <info@humanz.ai> (https://github.com/humanzltd)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Lg0gs/react-native-tiktok/issues"
+    "url": "https://github.com/humanzltd/react-native-tiktok/issues"
   },
-  "homepage": "https://github.com/Lg0gs/react-native-tiktok#readme",
+  "homepage": "https://github.com/humanzltd/react-native-tiktok#readme",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
