@@ -28,7 +28,7 @@ public class TiktokModule extends ReactContextBaseJavaModule {
   public static final String NAME = "Tiktok";
 
   private void Share(String path) {
-    TikTokOpenApi tiktokOpenApi = TikTokOpenApiFactory.create(getReactApplicationContext().getCurrentActivity());
+    TikTokOpenApi tiktokOpenApi = TikTokOpenApiFactory.create(getCurrentActivity());
     Share.Request request = new Share.Request();
     request.callerLocalEntry = "com.reactnativetiktok.TikTokEntryActivity";
     ArrayList<String> mUri = new ArrayList<>();
@@ -61,7 +61,6 @@ public class TiktokModule extends ReactContextBaseJavaModule {
     return NAME;
   }
 
-
   // Example method
   // See https://reactnative.dev/docs/native-modules-android
   @ReactMethod
@@ -70,7 +69,7 @@ public class TiktokModule extends ReactContextBaseJavaModule {
   }
 
   @ReactMethod
-  public void auth(String state, String scope,Callback callBack) {
+  public void auth(String state, String scope, Callback callBack) {
     TikTokOpenApi tiktokOpenApi = TikTokOpenApiFactory.create(getReactApplicationContext().getCurrentActivity());
     Authorization.Request request = new Authorization.Request();
     request.scope = scope;

@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.util.Pair;
 import android.widget.Toast;
-
 import com.bytedance.sdk.open.tiktok.TikTokOpenApiFactory;
 import com.bytedance.sdk.open.tiktok.api.TikTokOpenApi;
 import com.bytedance.sdk.open.tiktok.authorize.model.Authorization;
@@ -24,11 +23,12 @@ import java.util.Properties;
 public class TikTokEntryActivity extends ReactActivity implements IApiEventHandler {
     TikTokOpenApi ttOpenApi;
 
-    public void onReq(BaseReq baseReq) {}
+    public void onReq(BaseReq baseReq) {
+    }
 
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
-      TikTokOpenApi create = TikTokOpenApiFactory.create(this);
+        TikTokOpenApi create = TikTokOpenApiFactory.create(this);
         this.ttOpenApi = create;
         create.handleIntent(getIntent(), this);
     }
@@ -39,15 +39,16 @@ public class TikTokEntryActivity extends ReactActivity implements IApiEventHandl
             WritableMap params = Arguments.createMap();
             params.putInt("status", response.errorCode);
             params.putString("code", response.authCode);
-            params.putString("grantedPermissions",response.grantedPermissions);
-            params.putString("state",response.state);
+            params.putString("grantedPermissions", response.grantedPermissions);
+            params.putString("state", response.state);
             ReactContext ctx = getReactNativeHost().getReactInstanceManager().getCurrentReactContext();
             ctx.getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class).emit("onAuthCompleted", params);
             finish();
         } else if (baseResp instanceof Share.Response) {
             Share.Response response = (Share.Response) baseResp;
             ReactContext ctx = getReactNativeHost().getReactInstanceManager().getCurrentReactContext();
-            ctx.getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class).emit("onShareCompleted", response.subErrorCode);
+            ctx.getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class).emit("onShareCompleted",
+                    response.subErrorCode);
             finish();
         }
     }
