@@ -55,6 +55,12 @@ Callback function returns 3 types of response.
 ### `share(filePath, callback)`
 **share** method allows users to share videos from your app to TikTok,
 **filePath** shoud be valid mp4 video file path.
+
+### `shareAsset(assetId, callback)`
+**shareAsset** method allows users to share videos saved in Photos Library from your app to TikTok,
+**assetId** shoud be valid asset id.
+
+
 Callback function returns string type responses:
 
 | Responses                                         |
