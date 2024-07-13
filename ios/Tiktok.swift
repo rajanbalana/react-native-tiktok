@@ -4,7 +4,7 @@ import Photos
 
 @objc(Tiktok)
 class Tiktok: UIViewController {
-    
+
   @objc
     func auth(_ state:String ,scopes:String , callback: @escaping RCTResponseSenderBlock) {
     let scopes = [scopes] // list your scopes
@@ -22,7 +22,7 @@ class Tiktok: UIViewController {
       })
     }
   }
-  
+
   @objc
   func share(_ path: String, callback: @escaping RCTResponseSenderBlock) {
     PHPhotoLibrary.shared().performChanges({
@@ -39,5 +39,17 @@ class Tiktok: UIViewController {
         })
       }
     })
+  }
+
+  @objc
+  func shareAsset(_ assetId: String, callback: @escaping RCTResponseSenderBlock) {
+    let request = TikTokOpenSDKShareRequest()
+    request.mediaType = TikTokOpenSDKShareMediaType.video;
+    request.localIdentifiers = [assetId]
+    DispatchQueue.main.async {
+      request.send(completionBlock: { resp -> Void in
+        callback([resp.errCode.rawValue])
+      })
+    }
   }
 }
