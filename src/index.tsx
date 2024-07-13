@@ -74,7 +74,7 @@ export const share = (
   });
 };
 
-export const share = (
+export const shareAsset = (
   assetId: string,
   callback: (code: string | null) => void
 ) => {
